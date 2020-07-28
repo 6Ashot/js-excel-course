@@ -5,8 +5,7 @@ export class Formula extends ExcelComponent {
 
     constructor($root) {
         super($root, {
-            name: 'Formula',
-            listeners: ['input', 'click']
+            name: 'Formula'
         });
     }
 
@@ -15,13 +14,5 @@ export class Formula extends ExcelComponent {
             <div class="info">fx</div>
             <div class="input" contenteditable spellcheck="false"></div>
         `;
-    }
-
-    onInput(event) {
-        console.log(event.target.textContent);
-    }
-
-    onClick(event) {
-        console.log(event.target);
     }
 }
