@@ -3,19 +3,41 @@ const CODES = {
     Z: 90
 };
 
-function createCell() {
-    return `<div class="cell" contenteditable spellcheck="false"></div>`;
+function toCell(_, col) {
+    return `
+        <div class="cell" contenteditable spellcheck="false"
+            data-col="${col}"
+        >
+        </div>
+    `;
 }
 
-function createCol(content) {
-    return `<div class="column">${content}</div>`;
+function toColumn(content, index) {
+    return `
+        <div class="column" 
+            data-type="resizable" 
+            data-col="${index}"
+            
+        >
+            ${content}
+            <div class="col-resize" data-resize="col"></div>
+        </div>
+    `;
 }
 
 function createRow(content, number = null) {
-    return `<div class="row">
-            <div class="row-info">${number ? number : ''}</div>
+    const resizer = number ?
+        '<div class="row-resize" data-resize="row"></div>'
+        : '';
+    return `
+        <div class="row" data-type="resizable">
+            <div class="row-info">
+                ${number ? number : ''}
+                ${resizer}
+            </div>
             <div class="row-data">${content}</div>
-        </div>`;
+        </div>
+    `;
 }
 
 function toChar(_, index) {
@@ -28,43 +50,15 @@ export function createTable(rowsCount = 15) {
     const cols = Array(colsCount)
         .fill('')
         .map(toChar)
-        .map(createCol)
+        .map(toColumn)
         .join('');
     rows.push(createRow(cols));
     for (let i = 0; i < rowsCount; i++) {
         let cells = Array(colsCount)
             .fill('')
-            .map(createCell)
+            .map(toCell)
             .join('');
         rows.push(createRow(cells, i+1));
     }
     return rows.join('');
 }
-
-
-/*
-      <div class="row">
-            <div class="row-info"></div>
-            <div class="row-data">
-                <div class="column">A</div>
-                <div class="column">B</div>
-                <div class="column">C</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-info">1</div>
-            <div class="row-data">
-                <div class="cell" contenteditable spellcheck="false">A1</div>
-                <div class="cell" contenteditable spellcheck="false">B1</div>
-                <div class="cell" contenteditable spellcheck="false">C1</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row-info">2</div>
-            <div class="row-data">
-                <div class="cell" contenteditable spellcheck="false">A2</div>
-                <div class="cell" contenteditable spellcheck="false">B2</div>
-                <div class="cell" contenteditable spellcheck="false">C2</div>
-            </div>
-        </div>
-*/
