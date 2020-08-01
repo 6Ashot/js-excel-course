@@ -12,7 +12,8 @@
 		"comma-dangle": "off",
 		"no-unused-vars": "off",
 		"prefer-const": 'off',
-		"operator-linebreak": "off"
+		"operator-linebreak": "off",
+		"max-len": "off"
 	},
 	"extends": ["eslint:recommended", "google"],
 
