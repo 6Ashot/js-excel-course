@@ -13,7 +13,8 @@
 		"no-unused-vars": "off",
 		"prefer-const": 'off',
 		"operator-linebreak": "off",
-		"max-len": "off"
+		"max-len": "off",
+		"keyword-spacing": "off"
 	},
 	"extends": ["eslint:recommended", "google"],
 
