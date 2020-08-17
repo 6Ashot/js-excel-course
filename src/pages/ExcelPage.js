@@ -1,5 +1,5 @@
 import {Page} from '@core/Pages';
-import {createStore} from '@core/createStore';
+import {createStore} from '@core/store/createStore';
 import {rootReducer} from '@/redux/rootReducer';
 import {normalizeInitialState} from '@/redux/initianState';
 import {Excel} from '@/components/excel/Excel';
