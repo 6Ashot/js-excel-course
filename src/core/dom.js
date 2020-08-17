@@ -6,7 +6,7 @@ class Dom {
     }
 
     html(html) {
-        if (html) {
+        if (typeof html === 'string') {
             this.$el.innerHTML = html;
             return this;
         }
